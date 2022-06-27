@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
-*{
-  background-color: red;
-}
+
+
+// External libraries
+@import "bootstrap/scss/bootstrap";
