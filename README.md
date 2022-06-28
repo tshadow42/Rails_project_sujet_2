@@ -2,34 +2,13 @@
 L'objectif est de réaliser une application Ruby on Rails par équipe de 2 ou 3.
 
 
-# Choissez le projet qui vous plait le plus
 
-# Project 1
-* Une application qui permet de suggérer des recettes de cuisine en fonction de ce qu'on a dans le frigo
-
-Exemple de user story:
-Un utilisateur peut ajouter des ingredients dans son frigo et les retirer de son frigo
-Un utilisateur peut demander des suggestions de recettes et dans le cas où les ingredients présents dans le frigo ne permettent pas de faire une recette complète on peut indiquer les ingrédients manquant
-
-
-A la racine du projet, vous trouverez un json avec pleins de recette
-
-# Project 2
+# Sujet choisi (projet 2) :
 * Une application qui permet de calculer les émissions de CO2 d'un trajet donné 
 
 Exemple de user story:
 Un utilisateur peut indiquer mon type de transport et la distance en km de mon trajet (aide: https://agirpourlatransition.ademe.fr/particuliers/bureau/deplacements/calculer-emissions-carbone-trajets)
 
-
-# Project 3
-* Une application qui permet de déterminer les bons moments pour acheter et vendre une cryptomonnaie
-
-Exemple de user story:
-Un utilisateur peux appeler l'api d'un exchange de cryptos et récupérer les prix de plusieurs cryptos (exemple de gem d'exchanges: https://github.com/0xjmp/binance-ruby, https://github.com/jonatack/kraken_ruby_client)
-
-
-# Project 4
-* Le projet est libre mais vous devez justifiez votre choix et l'intérêt de l'application
 
 
 
