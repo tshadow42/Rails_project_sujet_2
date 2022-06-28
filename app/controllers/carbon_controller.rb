@@ -1,12 +1,16 @@
+require 'json'
+
 class CarbonController < ApplicationController
   def calculate()
-    distance = params[:distance].to_f
+    distance = params[:distance].to_f # take "distance" parameter and converts it to a float
 
-    car = ["Voiture thermique", distance * 0.19]
-    bus = ["Bus thermique", distance * 0.1]
-    ecar = ["Voiture électrique", distance * 0.02]
+    file = File.read('app/assets/carbon.json')
+    datas = JSON.parse(file)
 
-    carbon = [car, bus, ecar]
+    carbon = []
+    datas.each do |elem|
+      carbon << [elem["name"], distance * elem["value"]]
+    end
 
     render json: carbon
   end

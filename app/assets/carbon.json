@@ -1,0 +1,5 @@
+[
+    { "name": "Voiture thermique", "value": 0.19 },
+    { "name": "Bus thermique", "value": 0.1 },
+    { "name": "Voiture électrique", "value": 0.02 }
+]
