@@ -40,6 +40,7 @@ Init project
 * bundle install
 * npm install -g n
 * n stable
+* yarn add @popperjs/core
 * yarn add bootstrap jquery popper.js
 
 Launch tests
