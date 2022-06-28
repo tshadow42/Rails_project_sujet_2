@@ -1,5 +1,3 @@
-
-
 class CarbonController < ApplicationController
   def calculate()
     distance = params[:distance].to_f
