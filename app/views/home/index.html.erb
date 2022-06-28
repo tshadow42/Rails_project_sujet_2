@@ -7,13 +7,14 @@
         <li class="nav-item" role="presentation">
           <button class="nav-link active" id="distance-tab" data-bs-toggle="tab" data-bs-target="#distance" type="button" role="tab" aria-controls="distance" aria-selected="true">Distance</button>
         </li>
+
         <li class="nav-item" role="presentation">
           <button class="nav-link" id="route-tab" data-bs-toggle="tab" data-bs-target="#route" type="button" role="tab" aria-controls="route" aria-selected="false">Itinéraire</button>
         </li>
       </ul>
 
       <section class="section">
-        <div class="tab-content p-3" id="myTabContent">
+        <div class="tab-content p-3">
           <div class="tab-pane fade show active" id="distance" role="tabpanel" aria-labelledby="distance-tab">
             <label class="form-label" for="distanceInput">Distance en Km</label>
             <input id="distanceInput" class="form-control" type="number" placeholder="Distance en Km" value="10">
@@ -38,10 +39,17 @@
 
 <script>
     $(document).ready(function (){
-        getCarbonEmission($("#distanceInput").val())
+        const distanceInput = $("#distanceInput");
 
-        $("#distanceInput").change(function (){
-            getCarbonEmission($(this).val())
+        const distanceTab = $("#distance");
+        const routeTab = $("#route");
+
+        getCarbonEmission(distanceInput.val())
+
+        distanceInput.change(function (){
+            if (distanceTab.hasClass("active")){
+                getCarbonEmission($(this).val())
+            }
         });
     });
 

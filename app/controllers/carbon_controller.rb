@@ -2,7 +2,6 @@
 
 class CarbonController < ApplicationController
   def calculate()
-
     distance = params[:distance].to_f
 
     car = ["Voiture thermique", distance * 0.19]
