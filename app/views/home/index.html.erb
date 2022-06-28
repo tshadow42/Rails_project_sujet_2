@@ -1,8 +1,72 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-8 offset-md-2">
-      <h1>Main#index</h1>
-      <p>Find me in app/views/main/index.html.erb</p>
+    <div class="col-6 offset-md-3">
+      <h1 class="h2">Calcul des émissions de CO2 de vos trajets</h1>
+
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="distance-tab" data-bs-toggle="tab" data-bs-target="#distance" type="button" role="tab" aria-controls="distance" aria-selected="true">Distance</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="route-tab" data-bs-toggle="tab" data-bs-target="#route" type="button" role="tab" aria-controls="route" aria-selected="false">Itinéraire</button>
+        </li>
+      </ul>
+
+      <section class="section">
+        <div class="tab-content p-3" id="myTabContent">
+          <div class="tab-pane fade show active" id="distance" role="tabpanel" aria-labelledby="distance-tab">
+            <label class="form-label" for="distanceInput">Distance en Km</label>
+            <input id="distanceInput" class="form-control" type="number" placeholder="Distance en Km" value="10">
+          </div>
+
+          <div class="tab-pane fade" id="route" role="tabpanel" aria-labelledby="route-tab">
+            <label class="form-label" for="startPoint">Point de départ</label>
+            <input id="startPoint" class="form-control" type="number" placeholder="Point de départ">
+
+            <label class="form-label mt-2" for="endPoint">Point d'arriver</label>
+            <input id="endPoint" class="form-control" type="number" placeholder="Point de d'arriver">
+          </div>
+        </div>
+
+        <div class="p-3" id="result">
+
+        </div>
+      </section>
     </div>
   </div>
 </div>
+
+<script>
+    $(document).ready(function (){
+        getCarbonEmission($("#distanceInput").val())
+
+        $("#distanceInput").change(function (){
+            getCarbonEmission($(this).val())
+        });
+    });
+
+    function getCarbonEmission(distance){
+        $.ajax({
+            url: "/carbon/calculate?distance=" + distance,
+            success: function (result){
+                result.sort(sortByEmission)
+                let listOfEmission = "";
+
+                for(let i = 0; i < result.length; i++){
+                    listOfEmission += "<li>" + result[i][0] + " : <span class=\"badge rounded-pill bg-primary\">" + result[i][1] + " kgCO2e</span></li>"
+                }
+
+                $("#result").html("<ul>" + listOfEmission + "</ul>");
+            }
+        });
+    }
+
+    function sortByEmission(a, b) {
+        if (a[1] === b[1]) {
+            return 0;
+        }
+        else {
+            return (a[1] < b[1]) ? -1 : 1;
+        }
+    }
+</script>
