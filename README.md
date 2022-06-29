@@ -40,8 +40,8 @@ Init project
 * bundle install
 * npm install -g n
 * n stable
-* yarn add @popperjs/core
 * yarn add bootstrap jquery popper.js
+* yarn add @popperjs/core
 
 Launch tests
 * docker-compose run web bundle exec rails db:test:prepare
