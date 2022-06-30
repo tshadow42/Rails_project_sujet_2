@@ -21,14 +21,14 @@
           </div>
 
           <div class="tab-pane fade" id="route" role="tabpanel" aria-labelledby="route-tab">
+            Not finished: check console
             <label class="form-label" for="startPoint">Point de départ</label>
-            <input id="startPoint" class="form-control" type="number" placeholder="Point de départ">
+            <input id="startPoint" class="form-control" type="text" placeholder="Point de départ" value="">
 
             <label class="form-label mt-2" for="endPoint">Point d'arriver</label>
-            <input id="endPoint" class="form-control" type="number" placeholder="Point de d'arriver">
+            <input id="endPoint" class="form-control" type="text" placeholder="Point de d'arriver" value="">
           </div>
         </div>
-
         <div class="p-3" id="result">
 
         </div>
@@ -44,6 +44,22 @@
         const distanceTab = $("#distance");
         const routeTab = $("#route");
 
+        const startPoint = $("#startPoint");
+        const endPoint = $("#endPoint");
+
+
+        startPoint.change(function (){
+            if (startPoint.val() !== '' && endPoint.val() !== ''){
+                calculateDistance(startPoint, endPoint);
+            }
+        });
+
+        endPoint.change(function (){
+            if (startPoint.val() !== '' && endPoint.val() !== ''){
+                calculateDistance(startPoint, endPoint);
+            }
+        });
+
         getCarbonEmission(distanceInput.val())
 
         distanceInput.change(function (){
@@ -52,6 +68,22 @@
             }
         });
     });
+
+    function calculateDistance(startPoint, endPoint){
+        $.ajax({
+            url: "https://nominatim.openstreetmap.org/search?q=" + startPoint.val() + "&format=json",
+            success: function (resultStart) {
+                let startCoords = {lon: resultStart[0].lon, lat: resultStart[0].lat}
+                $.ajax({
+                    url: "https://nominatim.openstreetmap.org/search?q=" + endPoint.val() + "&format=json",
+                    success: function(resultEnd){
+                        let endCoords = {lon: resultEnd[0].lon, lat: resultEnd[0].lat}
+                        console.log("Start coordinates :", startCoords,"End coordinates :" , endCoords);
+                    }
+                })
+            }
+        })
+    }
 
     function getCarbonEmission(distance){
         $.ajax({
@@ -67,6 +99,15 @@
                 $("#result").html("<ul>" + listOfEmission + "</ul>");
             }
         });
+    }
+    function getLatAndLon(place, lon, lat) {
+        $.ajax({
+            url: "https://nominatim.openstreetmap.org/search?q=" + place.val() + "&format=json",
+            success: function (result) {
+                let coords = {lon: result[0].lon, lat: result[0].lat}
+                return coords;
+            }
+        })
     }
 
     function sortByEmission(a, b) {
