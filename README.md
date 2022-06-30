@@ -1,3 +1,6 @@
+# Lien de la demo :
+http://charvier-nicolas.fr:3000/
+
 # README
 L'objectif est de réaliser une application Ruby on Rails par équipe de 2 ou 3.
 
